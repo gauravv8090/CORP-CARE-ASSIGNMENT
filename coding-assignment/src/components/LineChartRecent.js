@@ -1,6 +1,7 @@
 
 import {Line} from 'react-chartjs-2'
 import { Chart as ChartJS , BarElement, CategoryScale,  Legend, LinearScale, Title, Tooltip, PointElement, LineElement, RadialLinearScale, LineController, Filler } from 'chart.js';
+import { useEffect, useState } from 'react';
 
 ChartJS.register(
     CategoryScale,
@@ -18,6 +19,33 @@ ChartJS.register(
 export const LineChartRecent = ()=>{
 
 
+    const [LineData, SetLineDAta] = useState([]);
+
+
+   useEffect(()=>{
+
+    async function getdata (){
+
+
+        let res = await fetch ('http://localhost:8080/recentline');
+
+        let res2 = await res.json();
+
+        SetLineDAta(res2.data);
+
+    }
+    getdata();
+
+   }, [])
+
+   console.log(LineData);
+
+   let myArr  = LineData.map((elem)=>{
+    return elem.key;
+   })
+
+   console.log(myArr);
+
 
     
 
@@ -28,7 +56,7 @@ export const LineChartRecent = ()=>{
          datasets : [
             {
                 label: '',
-                data: [2, 4, 2, 5, 3],
+                data: myArr,
                 backgroundColor: 'skyblue',
                 borderColor: 'blue',
                 tension: '0.4',

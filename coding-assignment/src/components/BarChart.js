@@ -18,10 +18,6 @@ ChartJS.register(
 export const BarChart = ()=>{
 
 
-
-    
-
-
     return <div style={{width: '220px' , height: '180px'}} ><Bar
     data = {{
          labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
