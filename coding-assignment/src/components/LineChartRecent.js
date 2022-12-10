@@ -27,7 +27,7 @@ export const LineChartRecent = ()=>{
     async function getdata (){
 
 
-        let res = await fetch ('http://localhost:8080/recentline');
+        let res = await fetch ('https://corp-care-backend.onrender.com/recentline');
 
         let res2 = await res.json();
 

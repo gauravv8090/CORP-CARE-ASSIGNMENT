@@ -2,7 +2,7 @@ const express = require ('express')
 const cors = require('cors');
 const linedata = require('./controllers/linecchart.controller.js');
 const linerecentdata = require('./controllers/linerecent.controller.js');
-const connect = require('./database/db');
+const connect = require('./database/db.js');
 
 
 const app= express()

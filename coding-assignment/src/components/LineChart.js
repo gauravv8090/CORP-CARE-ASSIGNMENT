@@ -26,7 +26,7 @@ export const LineChart = ()=>{
     async function getdata (){
 
 
-        let res = await fetch ('http://localhost:8080/line');
+        let res = await fetch ('https://corp-care-backend.onrender.com/line');
 
         let res2 = await res.json();
 
