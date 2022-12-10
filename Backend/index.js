@@ -3,6 +3,7 @@ const cors = require('cors');
 const linedata = require('./controllers/linecchart.controller.js');
 const linerecentdata = require('./controllers/linerecent.controller.js');
 const connect = require('./database/db.js');
+const bardata = require('./controllers/barchart.controller.js');
 
 
 const app= express()
@@ -16,6 +17,7 @@ app.get("/", (req, res)=>{
 })
 app.get("/line", linedata)
 app.get("/recentline", linerecentdata)
+app.get("/bar", bardata)
 
 
 connect().then(()=>{

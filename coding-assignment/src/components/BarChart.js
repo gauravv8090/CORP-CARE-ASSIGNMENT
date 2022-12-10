@@ -1,6 +1,7 @@
 
 import {Bar} from 'react-chartjs-2'
 import { Chart as ChartJS , BarElement, CategoryScale,  Legend, LinearScale, Title, Tooltip, PointElement, LineElement, RadialLinearScale, LineController, Filler } from 'chart.js';
+import { useEffect, useState } from 'react';
 
 ChartJS.register(
     CategoryScale,
@@ -17,6 +18,35 @@ ChartJS.register(
 
 export const BarChart = ()=>{
 
+    const [bardata, Setbardata] = useState([]);
+
+
+   useEffect(()=>{
+
+    async function getdata (){
+
+
+        let res = await fetch ('http://localhost:8080/bar');
+
+        let res2 = await res.json();
+
+        Setbardata(res2.data);
+
+    }
+    getdata();
+
+   }, [])
+
+   
+
+   let myArr1  = bardata.map((elem)=>{
+    return elem.key1;
+   })
+
+   let myArr2  = bardata.map((elem)=>{
+    return elem.key2;
+   })
+
 
     return <div style={{width: '220px' , height: '180px'}} ><Bar
     data = {{
@@ -24,7 +54,7 @@ export const BarChart = ()=>{
          datasets : [
             {
                 label: '',
-                data: [4, 3, 5, 2, 4, 5, 2],
+                data: myArr1,
                 backgroundColor: 'skyblue',
                 borderColor: 'blue',
                 tension: '0.4',
@@ -33,7 +63,7 @@ export const BarChart = ()=>{
             },
             {
                 label: '',
-                data: [2, 1, 3, 5, 2, 3, 5],
+                data: myArr2,
                 backgroundColor: 'blue',
                 borderColor: 'blue',
                 tension: '0.4',
